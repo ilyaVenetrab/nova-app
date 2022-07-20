@@ -14,9 +14,9 @@ app.use(
 );
 app.use(cors());
 
-
-app.use(express.static(path.join(__dirname, '../dist/novardis')));
-app.use('/', express.static(path.join(__dirname, '../dist/novardis/index.html')));
+console.log(path.join(__dirname, './dist/novardis'));
+app.use(express.static(path.join(__dirname, './dist/novardis')));
+app.use('/', express.static(path.join(__dirname, './dist/novardis/index.html')));
 
 
 
