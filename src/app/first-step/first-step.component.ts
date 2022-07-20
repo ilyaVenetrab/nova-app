@@ -39,7 +39,11 @@ export class FirstStepComponent {
     this.currentStep++;
     this.updateStep.emit(this.currentStep);
 
-    this.attemptCount++;
+    if (this.attemptCount >= 2) {
+      this.attemptCount = 0;
+    } else {
+      this.attemptCount++;
+    }
     this.updateAttemptCount.emit(this.attemptCount);
   }
 
