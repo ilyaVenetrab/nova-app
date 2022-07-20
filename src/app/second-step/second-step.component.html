@@ -1,1 +1,19 @@
-<p>second-step works!</p>
+<ng-container>
+  <p class="text-center" [innerHTML]="getQuestion(answerCount).title"></p>
+
+  <div class="d-flex justify-between items-center"
+       [ngClass]="{'row-reverse': getQuestion(answerCount).revertButton}"
+  >
+    <button class="btn-2"
+            (click)="yesEvent()"
+    >
+      Yes
+    </button>
+    <ng-content></ng-content>
+    <button class="btn-2"
+            (click)="noEvent()"
+    >
+      No
+    </button>
+  </div>
+</ng-container>

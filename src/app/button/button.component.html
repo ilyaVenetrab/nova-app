@@ -1,3 +1,26 @@
-<button class="btn">
-  <ng-content></ng-content>
-</button>
+<div
+  (mouseleave)="mouseleaveEvent()"
+>
+  <ng-container *ngIf="attemptCount === 0">
+    <button
+      *ngFor="let voteItem of voteItems"
+      class="btn js-btn"
+      (click)="clickEvent(voteItem)"
+      [attr.data-id]="voteItem?._id"
+    >
+      {{ voteItem?.title }}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="attemptCount === 1">
+    <button
+      *ngFor="let voteItem of voteItems"
+      class="btn js-btn"
+      (click)="clickEvent(voteItem)"
+      [attr.data-id]="voteItem?._id"
+      (mousemove)="mousemoveEvent($event)"
+      [style.transform]="'scale(' + transformScale(voteItem.isMain)  + ')'"
+    >
+      {{ voteItem?.title }}
+    </button>
+  </ng-container>
+</div>

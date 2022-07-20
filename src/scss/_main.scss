@@ -1,0 +1,59 @@
+@import "variables";
+
+body {
+  background-color: $light-grey;
+  color: $black;
+  font: 400 22px/125% Gilroy, "Open Sans", "Arial", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+.border-grey {
+  border: 2px solid $grey;
+}
+
+.border-radius {
+  border-radius: 4px;
+}
+
+.p-2 {
+  padding: 2em;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.color-red {
+  color: $red;
+}
+
+.text-center {
+  text-align: center;
+}
