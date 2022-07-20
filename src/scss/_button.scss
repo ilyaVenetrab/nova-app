@@ -5,8 +5,11 @@
   background-color: $white-deep;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-transform: uppercase;
+  font-size: .7em;
 
-  &:hover {
+  &:hover,
+  &.active {
     color: $white;
     background-color: $red;
   }
@@ -14,6 +17,12 @@
   &:disabled {
     opacity: .5;
     pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1rem;
+    min-width: 75px;
+    font-size: .5em;
   }
 }
 

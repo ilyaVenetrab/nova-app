@@ -6,7 +6,7 @@
       *ngFor="let voteItem of voteItems"
       class="btn js-btn"
       (click)="clickEvent(voteItem)"
-      [attr.data-id]="voteItem?._id"
+      [ngClass]="{'active': voteItem.active}"
     >
       {{ voteItem?.title }}
     </button>
@@ -16,9 +16,9 @@
       *ngFor="let voteItem of voteItems"
       class="btn js-btn"
       (click)="clickEvent(voteItem)"
-      [attr.data-id]="voteItem?._id"
-      (mousemove)="mousemoveEvent($event)"
+      (mousemove)="mousemoveEvent(voteItem)"
       [style.transform]="'scale(' + transformScale(voteItem.isMain)  + ')'"
+      [ngClass]="{'active': voteItem.active}"
     >
       {{ voteItem?.title }}
     </button>

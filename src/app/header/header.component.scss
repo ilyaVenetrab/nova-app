@@ -1,0 +1,37 @@
+.header-group {
+  height: 75px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .logo {
+    img {
+      width: 47px;
+      height: 48px;
+    }
+  }
+
+  @media (max-width: 1680px) {
+    height: 62px;
+    padding: 15px;
+
+    .logo {
+      img {
+        width: 39px;
+        height: 40px;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    .logo {
+      img {
+        width: 25px;
+        height: 26px;
+      }
+    }
+  }
+}

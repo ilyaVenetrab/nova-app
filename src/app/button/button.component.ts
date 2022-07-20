@@ -20,12 +20,17 @@ export class ButtonComponent {
 
   public clickEvent(item: IVoteItem | null): void {
     this.selectVoteOutput.emit(item);
+
+    this.voteItems?.forEach(i => {
+      if (i !== item) {
+        i.active = false;
+      } else {
+        item.active = true;
+      }
+    });
   }
 
-  public mousemoveEvent(event: MouseEvent): void {
-    let moveBtnID = (event.target as HTMLButtonElement).getAttribute('data-id');
-    let item = this.voteItems?.find(i => String(i._id) === moveBtnID);
-
+  public mousemoveEvent(item: IVoteItem): void {
     if (!item?.isMain) {
       this.scaleCounter = this.scaleCounter + 1;
     }

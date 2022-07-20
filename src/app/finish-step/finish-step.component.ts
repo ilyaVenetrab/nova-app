@@ -8,7 +8,7 @@ import { IVoteItem } from '../app.component';
 })
 export class FinishStepComponent implements OnInit {
   @Input()
-  public selectVote: IVoteItem | null = null;
+  public selectVote: IVoteItem | null = {} as IVoteItem;
 
   @Output()
   public selectOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
@@ -24,6 +24,10 @@ export class FinishStepComponent implements OnInit {
       this.selectOutput.emit(null);
       this.updateStep.emit(1);
       this.updateAttemptCount.emit(0);
+
+      if (this.selectVote) {
+        this.selectVote.active = false;
+      }
     }, 5000);
   }
 }
