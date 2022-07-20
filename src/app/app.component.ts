@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 export interface IVoteItem {
   _id: number;
   isMain: boolean;
-  title: string
+  title: string;
+  active: boolean
 }
 
 @Component({
@@ -20,12 +21,14 @@ export class AppComponent {
     {
       _id: 0,
       isMain: true,
-      title: 'Novardis'
+      title: 'Novardis',
+      active: false
     },
     {
       _id: 1,
       isMain: false,
-      title: 'Another'
+      title: 'Another',
+      active: false
     }
   ];
 

@@ -6,6 +6,7 @@ import { ButtonComponent } from './button/button.component';
 import { FirstStepComponent } from './first-step/first-step.component';
 import { SecondStepComponent } from './second-step/second-step.component';
 import { FinishStepComponent } from './finish-step/finish-step.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FinishStepComponent } from './finish-step/finish-step.component';
     FirstStepComponent,
     SecondStepComponent,
     FinishStepComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

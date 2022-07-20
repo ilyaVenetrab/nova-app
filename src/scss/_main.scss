@@ -6,8 +6,21 @@ body {
   font: 400 22px/125% Gilroy, "Open Sans", "Arial", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
+h1 {
+  font: 600 64px/110% Gilroy, "Open Sans", "Arial", sans-serif;
+  margin: 0;
+
+  @media (max-width: 1680px) {
+    font: 600 50px/110% Gilroy, "Open Sans", "Arial", sans-serif;
+  }
+
+  @media (max-width: 1366px) {
+    font: 600 40px/110% Gilroy, "Open Sans", "Arial", sans-serif;
+  }
+
+  @media (max-width: 1024px) {
+    font: 600 28px/115% Gilroy, "Open Sans", "Arial", sans-serif;
+  }
 }
 
 .border-grey {
@@ -20,6 +33,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .p-2 {
   padding: 2em;
+
+  @media (max-width: 1024px) {
+    padding: 1em;
+  }
+}
+
+.pt-1 {
+  padding-top: 1em;
 }
 
 .d-flex {

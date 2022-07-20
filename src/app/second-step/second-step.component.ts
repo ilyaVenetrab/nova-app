@@ -79,5 +79,6 @@ export class SecondStepComponent implements OnInit {
   public refreshSelectVote(): void {
     this.selectOutput.emit(null);
     this.updateStep.emit(1);
+    this.selectVote.active = false;
   }
 }
