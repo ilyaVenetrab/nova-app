@@ -1,0 +1,8 @@
+<h1>Please choose <span>best company</span> <br>(vote for one)</h1>
+
+<app-button
+  *ngFor="let voteItem of voteItems"
+  (selectVoteOutput)="handleSelectEvent(voteItem)"
+>
+  {{ voteItem.title }}
+</app-button>
