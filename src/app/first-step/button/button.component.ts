@@ -19,6 +19,8 @@ export class ButtonComponent {
   @Output()
   public updateAttemptCount: EventEmitter<number> = new EventEmitter<number>();
 
+  public isMobile: boolean = window.innerWidth < 1024;
+
   public selectEvent(item: IVoteItem | null) {
     this.selectVoteOutput.emit(item);
   }
