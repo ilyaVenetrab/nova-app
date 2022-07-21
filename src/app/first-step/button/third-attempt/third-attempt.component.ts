@@ -13,6 +13,10 @@ export class ThirdAttemptComponent extends FirstAttemptComponent implements Afte
 
   public moveCount: number = 0;
 
+  public isChange: boolean = false;
+
+  public btnStyle: string = '';
+
   constructor(private _sanitizer: DomSanitizer, public _elementRef: ElementRef) {
     super();
   }
@@ -25,13 +29,23 @@ export class ThirdAttemptComponent extends FirstAttemptComponent implements Afte
         if (target !== button) {
           let notClickItem = this.voteItems?.find(i => String(i._id) === button.getAttribute('id'));
 
-          button.setAttribute('style', target.getAttribute('style') as string);
+          if (!this.isChange) {
+            this.btnStyle = target.getAttribute('style') as string;
+            button.setAttribute('style', this.btnStyle);
+          } else {
+            button.removeAttribute('style');
+          }
           notClickItem && super.clickEvent(notClickItem);
-          this.moveCount = 0;
         } else {
-          button.removeAttribute('style');
+          if (!this.isChange) {
+            button.removeAttribute('style');
+          } else {
+            button.setAttribute('style', this.btnStyle);
+          }
         }
       });
+
+      this.isChange = !this.isChange;
     }
   }
 

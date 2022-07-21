@@ -48,7 +48,7 @@ export class SecondAttemptComponent extends FirstAttemptComponent implements Aft
     if (isMain) {
       let scale = 1 + this.scaleCounter / 10;
 
-      return scale < 2.5 ? scale : 2.5;
+      return scale < 2.1 ? scale : 2.1;
     } else {
       let scale = 1 - this.scaleCounter / 10;
 
