@@ -1,13 +1,13 @@
 <div
   (mouseleave)="mouseleaveEvent()"
+  (mousemove)="mousemoveEvent($event)"
 >
   <button
     *ngFor="let voteItem of voteItems"
-    class="btn js-btn"
+    class="btn"
     (click)="clickEvent(voteItem)"
-    (mousemove)="mousemoveEvent(voteItem)"
     [style.transform]="'scale(' + transformScale(voteItem.isMain)  + ')'"
-    [ngClass]="{'active': voteItem.active}"
+    [ngClass]="{'active': voteItem.active, 'js-btn': !voteItem.isMain}"
   >
     {{ voteItem?.title }}
   </button>

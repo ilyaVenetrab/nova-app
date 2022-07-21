@@ -16,7 +16,14 @@ export class ButtonComponent {
   @Output()
   public selectVoteOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
 
+  @Output()
+  public updateAttemptCount: EventEmitter<number> = new EventEmitter<number>();
+
   public selectEvent(item: IVoteItem | null) {
     this.selectVoteOutput.emit(item);
+  }
+
+  public attemptCountEvent(index: number = 0) {
+    this.updateAttemptCount.emit(index);
   }
 }

@@ -48,7 +48,7 @@ export class SecondStepComponent implements OnInit {
         refresh: false
       },
       {
-        title: this._sanitizer.bypassSecurityTrustHtml(`You don't want to not vote for <snap class="color-red">${this.selectVote.title}</snap>?`),
+        title: this._sanitizer.bypassSecurityTrustHtml(`You don't want to not vote for <snap class="color-red">${this.selectVote.title.toUpperCase()}</snap>?`),
         revertButton: false,
         refresh: true
       }

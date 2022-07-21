@@ -16,7 +16,7 @@ export class FirstAttemptComponent {
   @Output()
   public selectVoteOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
 
-  public clickEvent(item: IVoteItem | null): void {
+  public clickEvent(item: IVoteItem | null, event?: MouseEvent): void {
     this.selectVoteOutput.emit(item);
 
     this.voteItems?.forEach(i => {

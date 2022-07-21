@@ -1,9 +1,12 @@
-<button
-  *ngFor="let voteItem of voteItems"
-  class="btn js-btn"
-  (click)="clickEvent(voteItem)"
-  [ngClass]="{'active': voteItem.active}"
-  (mouseenter)="runButton($event, voteItem)"
->
-  {{ voteItem?.title }}
-</button>
+<div>
+  <button
+    *ngFor="let voteItem of voteItems"
+    class="btn js-btn"
+    (click)="clickEvent(voteItem, $event)"
+    (mouseenter)="mouseEnterEvent($event, voteItem)"
+    [ngClass]="{'active': voteItem.active}"
+    [attr.id]="voteItem._id"
+  >
+    {{ voteItem?.title }}
+  </button>
+</div>
