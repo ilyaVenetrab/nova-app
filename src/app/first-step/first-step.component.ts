@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { IVoteItem } from '../app.component';
 
 @Component({
   selector: 'app-first-step',
   templateUrl: './first-step.component.html',
   styleUrls: ['./first-step.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FirstStepComponent {
   @Input()
@@ -50,5 +51,9 @@ export class FirstStepComponent {
   public previousStep(): void {
     this.currentStep--;
     this.updateStep.emit(this.currentStep);
+  }
+
+  public attemptCountEvent(index: number = 0) {
+    this.updateAttemptCount.emit(index);
   }
 }
