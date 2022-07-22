@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IVoteItem } from '../app.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { FirstStepComponent } from '../first-step/first-step.component';
 
 interface IQuestion {
   title: string | SafeHtml;
@@ -13,21 +14,16 @@ interface IQuestion {
   templateUrl: './second-step.component.html',
   styleUrls: ['./second-step.component.scss']
 })
-export class SecondStepComponent implements OnInit {
+export class SecondStepComponent extends FirstStepComponent implements OnInit {
   @Input()
-  public selectVote: IVoteItem = {} as IVoteItem;
-
-  @Output()
-  public selectOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
-
-  @Output()
-  public updateStep: EventEmitter<number> = new EventEmitter<number>();
+  public override selectVote: IVoteItem = {} as IVoteItem;
 
   public answerCount: number = 0;
 
   public approveQuestion: IQuestion[] = [];
 
   public constructor(private _sanitizer: DomSanitizer) {
+    super();
   }
 
   public ngOnInit(): void {

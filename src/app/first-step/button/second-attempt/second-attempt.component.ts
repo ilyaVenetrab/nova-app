@@ -39,7 +39,7 @@ export class SecondAttemptComponent extends FirstAttemptComponent implements Aft
     this.scaleCounter = 0;
     this.mouseleaveCount++;
 
-    if (this.mouseleaveCount === 4) {
+    if (this.mouseleaveCount === 2) {
       this.updateAttemptCount.emit(2);
     }
   }

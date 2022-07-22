@@ -1,3 +1,17 @@
+:host {
+  width: 100%;
+  max-width: 310px;
+}
+
+div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
 .btn {
   z-index: 1;
   transition: color 0.3s ease, background-color 0.3s ease;
