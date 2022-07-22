@@ -16,6 +16,8 @@
 
     <app-second-step
       *ngIf="currentStep == stepCount && selectVote && !selectVote.isMain"
+      [voteItems]="voteItems"
+      [stepCount]="stepCount"
       [selectVote]="selectVote"
       (selectOutput)="handleSelectVote($event)"
       (updateStep)="handleUpdateStep($event)"

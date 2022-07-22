@@ -1,0 +1,13 @@
+:host {
+  width: 100%;
+  max-width: 310px;
+}
+
+div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}

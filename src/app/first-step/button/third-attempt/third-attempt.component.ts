@@ -54,7 +54,7 @@ export class ThirdAttemptComponent extends FirstAttemptComponent implements Afte
   }
 
   public mouseEnterEvent(event: MouseEvent, item: IVoteItem): void {
-    if (!item.isMain && this.moveCount < 15) {
+    if (!item.isMain && this.moveCount < 10) {
       let target = event.target as HTMLButtonElement;
 
       target.style.position = 'absolute';
