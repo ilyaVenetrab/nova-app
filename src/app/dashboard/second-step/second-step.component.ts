@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FirstStepComponent } from '../first-step/first-step.component';
-import { AppService, IQuestion, IVoteItem } from '../app.service';
+import { AppService, IQuestion, IVoteItem } from '../../app.service';
 
 @Component({
   selector: 'app-second-step',

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IVoteItem } from '../../app.service';
+import { IVoteItem } from '../../../app.service';
 
 @Component({
   selector: 'app-button',

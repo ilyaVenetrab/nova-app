@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IVoteItem } from '../app.service';
+import { IVoteItem } from '../../app.service';
 
 @Component({
   selector: 'app-finish-step',
