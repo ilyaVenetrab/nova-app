@@ -3,7 +3,9 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('./models/db');
 
+const indexAPI = require('./routes');
 const app = express();
 
 app.use(bodyParser.json());
@@ -14,12 +16,10 @@ app.use(
 );
 app.use(cors());
 
-console.log(path.join(__dirname, './dist/novardis'));
-app.use(express.static(path.join(__dirname, './dist/novardis')));
-app.use('/', express.static(path.join(__dirname, './dist/novardis/index.html')));
+app.use(express.static(path.join(__dirname, '../dist/novardis')));
+app.use('/', express.static(path.join(__dirname, '../dist/novardis/index.html')));
 
-
-
+app.use('/api', indexAPI);
 // Create port
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

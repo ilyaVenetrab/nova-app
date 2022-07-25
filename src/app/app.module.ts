@@ -10,6 +10,11 @@ import { HeaderComponent } from './header/header.component';
 import { FirstAttemptComponent } from './first-step/button/first-attempt/first-attempt.component';
 import { SecondAttemptComponent } from './first-step/button/second-attempt/second-attempt.component';
 import { ThirdAttemptComponent } from './first-step/button/third-attempt/third-attempt.component';
+import { AppService } from './app.service';
+import { BD_URL } from './shared/tokens';
+import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import { SanitizeHtmlPipe } from './shared/pipe/sanitize-html.pipe';
 
 @NgModule({
   declarations: [
@@ -22,12 +27,20 @@ import { ThirdAttemptComponent } from './first-step/button/third-attempt/third-a
     FirstAttemptComponent,
     SecondAttemptComponent,
     ThirdAttemptComponent,
+    SanitizeHtmlPipe,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AppService,
+    {
+      provide: BD_URL,
+      useValue: environment.bdUrl,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

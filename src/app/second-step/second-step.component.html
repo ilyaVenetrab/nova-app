@@ -11,10 +11,10 @@
     </app-button>
   </div>
 
-  <p class="text-center" [innerHTML]="getQuestion(answerCount).title"></p>
+  <p class="text-center" [innerHTML]="getQuestion(answerCount)?.title | sanitizeHtml"></p>
 
   <div class="d-flex justify-between items-center"
-       [ngClass]="{'row-reverse': getQuestion(answerCount).revertButton}"
+       [ngClass]="{'row-reverse': getQuestion(answerCount)?.revertButton}"
   >
     <button class="btn-2"
             (click)="yesEvent()"

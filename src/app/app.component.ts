@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-
-export interface IVoteItem {
-  _id: number;
-  isMain: boolean;
-  title: string;
-  active: boolean
-}
+import { AppService, IVoteItem } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -17,23 +11,16 @@ export class AppComponent {
 
   public attemptCount: number = 0;
 
-  public voteItems: IVoteItem[] = [
-    {
-      _id: 0,
-      isMain: true,
-      title: 'Novardis',
-      active: false
-    },
-    {
-      _id: 1,
-      isMain: false,
-      title: 'Another',
-      active: false
-    }
-  ];
+  public voteItems: IVoteItem[] =[];
 
   public currentStep: number = 1;
   public selectVote: IVoteItem | null = null;
+
+  public constructor(private _appService: AppService) {
+    this._appService.getCompanies().subscribe((data: IVoteItem[]) => {
+      this.voteItems = data;
+    });
+  }
 
   public handleSelectVote(vote: IVoteItem | null): void {
     this.selectVote = vote;

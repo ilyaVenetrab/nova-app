@@ -1,13 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IVoteItem } from '../app.component';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, Input, OnInit } from '@angular/core';
 import { FirstStepComponent } from '../first-step/first-step.component';
-
-interface IQuestion {
-  title: string | SafeHtml;
-  revertButton: boolean;
-  refresh: boolean;
-}
+import { AppService, IQuestion, IVoteItem } from '../app.service';
 
 @Component({
   selector: 'app-second-step',
@@ -20,39 +13,20 @@ export class SecondStepComponent extends FirstStepComponent implements OnInit {
 
   public answerCount: number = 0;
 
-  public approveQuestion: IQuestion[] = [];
+  public approveQuestion!: IQuestion[];
 
-  public constructor(private _sanitizer: DomSanitizer) {
+  public constructor(private _appService: AppService) {
     super();
   }
 
   public ngOnInit(): void {
-    this.approveQuestion = [
-      {
-        title: 'Are you sure of your selection?',
-        revertButton: false,
-        refresh: false
-      },
-      {
-        title: 'Really?',
-        revertButton: true,
-        refresh: false
-      },
-      {
-        title: 'You\' really, REALLY sure?',
-        revertButton: false,
-        refresh: false
-      },
-      {
-        title: this._sanitizer.bypassSecurityTrustHtml(`You don't want to not vote for <snap class="color-red">${this.selectVote.title.toUpperCase()}</snap>?`),
-        revertButton: false,
-        refresh: true
-      }
-    ];
+    this._appService.getQuestion(this.selectVote.title).subscribe((data: IQuestion[]) => {
+      this.approveQuestion = data;
+    });
   }
 
   public getQuestion(index: number = 0): IQuestion {
-    return this.approveQuestion[index];
+    return this.approveQuestion && this.approveQuestion[index];
   }
 
   public yesEvent(): void {

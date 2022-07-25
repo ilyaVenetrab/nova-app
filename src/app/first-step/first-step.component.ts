@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { IVoteItem } from '../app.component';
+import { IVoteItem } from '../app.service';
 
 @Component({
   selector: 'app-first-step',

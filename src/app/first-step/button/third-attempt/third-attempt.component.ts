@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { FirstAttemptComponent } from '../first-attempt/first-attempt.component';
-import { IVoteItem } from '../../../app.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { IVoteItem } from '../../../app.service';
 
 @Component({
   selector: 'app-third-attempt',
