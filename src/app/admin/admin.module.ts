@@ -4,7 +4,6 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 
 
-
 @NgModule({
   declarations: [AdminComponent],
   imports: [

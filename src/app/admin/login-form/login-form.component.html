@@ -1,0 +1,37 @@
+<ng-container>
+  <h1>{{ title$ | async }}</h1>
+  <div class="d-flex justify-center">
+    <form [formGroup]="loginForm" class="form">
+      <div class="form__control"
+           [ngClass]="{'error': loginForm.get('username')?.touched && loginForm.get('username')?.errors, 'has-value': loginForm.get('username').value}"
+      >
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form__input"
+        />
+        <label for="username" class="form__label">Username</label>
+      </div>
+      <div class="form__control"
+           [ngClass]="{'error': loginForm.get('password')?.touched && loginForm.get('password')?.errors, 'has-value': loginForm.get('password').value}"
+      >
+        <input
+          type="text"
+          id="password"
+          formControlName="password"
+          class="form__input"
+        />
+        <label for="password" class="form__label">Password</label>
+      </div>
+      <div *ngIf="loginMessage">{{ loginMessage }}</div>
+      <div class="d-flex justify-center">
+        <button
+          class="btn"
+          [disabled]="loginForm.invalid || loginForm.pending"
+          (click)="login(loginForm.value)"
+        >Submit</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AppService, IVoteItem } from './app.service';
 
 @Component({
   selector: 'app-root',

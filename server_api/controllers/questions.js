@@ -7,17 +7,20 @@ const sendJsonResponse = function (res, status, content) {
 };
 
 module.exports.getQuestions = function (req, res) {
+  console.log('set req.session.isPopulated => ', req.session.isPopulated);
   Questions.find()
     .then(results => {
-      let companies = [];
+      let questions = [];
       results.forEach(doc => {
-        companies.push({
-          title: doc.title.replace('$', `<snap class="color-red">${req.query.name.toUpperCase()}</snap>`),
+        questions.push({
+          title: doc.title,
           revertButton: doc.revertButton,
           refresh: doc.refresh,
           _id: doc._id
         });
       });
-      sendJsonResponse(res, 200, companies);
-    }).catch(err => sendJsonResponse(res, 404, err));
+      sendJsonResponse(res, 200, questions);
+    }).catch(err => {
+      sendJsonResponse(res, 404, err)
+    });
 };

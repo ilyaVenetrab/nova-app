@@ -1,0 +1,47 @@
+.form {
+  $parent: &;
+
+  &__control {
+    position: relative;
+  }
+
+  &__input {
+    width: 100%;
+    color: $black;
+    font-size: 18px;
+    line-height: 18px;
+    height: 53px;
+    outline: none;
+    border: unset;
+    border-bottom: 1px solid $grey;
+    background: unset;
+    margin-top: 20px;
+
+    .error & {
+      border-bottom: 1px solid $red;
+    }
+  }
+
+  &__input:focus + &__label,
+  &__control.has-value &__input + &__label {
+    opacity: 0;
+  }
+
+  &__label {
+    position: absolute;
+    color: $grey;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 10px;
+    opacity: 1;
+    transition-duration: 100ms;
+    padding: 15px 0;
+
+    .error & {
+      color: $red;
+    }
+  }
+}

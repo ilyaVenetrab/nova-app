@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { ICommon } from '../../app.service';
 
-export interface ICommon {
-  success: boolean;
-  message: string
-}
-
-export interface IVoteItem {
+export interface IUser {
+  username: string;
+  password: string;
   _id: number;
-  isMain: boolean;
-  title: string;
-  active: boolean
 }
 
-export interface IQuestion {
-  title: string | undefined;
-  revertButton: boolean;
-  refresh: boolean;
+export interface ILogin extends ICommon, IUser {
+  accessToken: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class AuthService {
   public constructor(private _http: HttpClient) {}
 
   // Error handling
@@ -41,21 +34,29 @@ export class AppService {
     });
   }
 
-  public getCompanies(): Observable<IVoteItem[]> {
-    return this._http.get('/companies').pipe(
+  public loginUser(user: IUser): Observable<ILogin> {
+    return this._http.post(`/auth/signin`, user).pipe(
       map((res: Object) => {
-        return res as IVoteItem[];
+        return res as ILogin;
       }),
       catchError(this._errorMgmt)
-    );
+    )
   }
 
-  public getQuestion(compTitle: string): Observable<IQuestion[]> {
-    return this._http.get(`/questions?name=${compTitle}`).pipe(
+  public verifyToken(): Observable<ILogin> {
+    return this._http.get(`/test/user`).pipe(
       map((res: Object) => {
-        return res as IQuestion[];
+        return res as ILogin;
       }),
       catchError(this._errorMgmt)
-    );
+    )
+  }
+
+  public tokenToLocalStorage(user: ILogin): void {
+    localStorage.setItem('accessToken', user.accessToken);
+  }
+
+  public getTokenFromLocalStorage(): Observable<string | null> {
+    return of(localStorage.getItem('accessToken'));
   }
 }

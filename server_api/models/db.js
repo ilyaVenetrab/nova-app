@@ -1,5 +1,6 @@
 require('./companies');
 require('./questions');
+require('./user');
 let mongoose = require('mongoose');
 let gracefulShutdown;
 
