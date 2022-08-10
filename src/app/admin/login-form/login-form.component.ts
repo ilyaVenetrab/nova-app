@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { pluck } from 'rxjs';
 import { AuthService, ILogin, IUser } from '../../shared/auth/auth.service';
 
@@ -33,7 +33,8 @@ export class LoginFormComponent {
   public constructor(
     private _activatedRoute: ActivatedRoute,
     private readonly _formBuilder: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {
   }
 
@@ -41,6 +42,7 @@ export class LoginFormComponent {
     this._authService.loginUser(user).subscribe((response: ILogin) => {
       if (response.success) {
         this._authService.tokenToLocalStorage(response);
+        this._router.navigate(['/admin/dashboard']);
       }
 
       this.loginMessage = response.message;

@@ -15,9 +15,15 @@ export class AuthGuard implements CanActivate {
     router: RouterStateSnapshot,): Observable<boolean>
   {
     return this._authService.getTokenFromLocalStorage().pipe(
+      take(1),
       switchMap((id) => {
-        if (!id) {
-          this._router.navigate(['/admin/login']);
+        if (!id && router.url === '/admin/dashboard') {
+          this._router.navigate(['/dashboard']);
+          return of(false);
+        }
+
+        if (id && router.url === '/admin/login') {
+          this._router.navigate(['/admin/dashboard']);
           return of(true);
         }
 

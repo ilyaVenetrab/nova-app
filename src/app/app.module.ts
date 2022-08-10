@@ -19,7 +19,7 @@ import { AuthInterceptor } from './shared/auth/auth.interceptor';
     DashboardModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     AppService,

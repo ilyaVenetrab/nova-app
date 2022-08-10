@@ -11,6 +11,7 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () => import('./login-form/login-form.module').then((m) => m.LoginFormModule),
+        canActivate: [AuthGuard],
         data: {
           title: 'Login Form',
         }
