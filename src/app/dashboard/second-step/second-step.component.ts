@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FirstStepComponent } from '../first-step/first-step.component';
 import { AppService, IQuestion, IVoteItem } from '../../app.service';
+import { Store } from '@ngrx/store';
+import { IDashboard } from '../reducers/dashboard.reducer';
+import { refreshState } from '../actions/dashboard.actions';
 
 @Component({
   selector: 'app-second-step',
@@ -9,14 +12,14 @@ import { AppService, IQuestion, IVoteItem } from '../../app.service';
 })
 export class SecondStepComponent extends FirstStepComponent implements OnInit {
   @Input()
-  public override selectVote: IVoteItem = {} as IVoteItem;
+  public selectVote: IVoteItem = {} as IVoteItem;
 
   public answerCount: number = 0;
 
   public approveQuestion!: IQuestion[];
 
-  public constructor(private _appService: AppService) {
-    super();
+  public constructor(private _appService: AppService, public override store: Store<IDashboard>) {
+    super(store);
   }
 
   public ngOnInit(): void {
@@ -47,8 +50,10 @@ export class SecondStepComponent extends FirstStepComponent implements OnInit {
   }
 
   public refreshSelectVote(): void {
-    this.selectOutput.emit(null);
-    this.updateStep.emit(1);
-    this.selectVote.active = false;
+    this.store.dispatch(refreshState({
+      selectVote: {} as IVoteItem,
+      currentStep: 1,
+      attemptCount: 0
+    }));
   }
 }

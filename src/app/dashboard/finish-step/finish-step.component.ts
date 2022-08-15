@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IVoteItem } from '../../app.service';
+import { Store } from '@ngrx/store';
+import { IDashboard } from '../reducers/dashboard.reducer';
+import { refreshState, setSelectVote, updateAttemptCount, updateCurrentStep } from '../actions/dashboard.actions';
 
 @Component({
   selector: 'app-finish-step',
@@ -10,24 +13,16 @@ export class FinishStepComponent implements OnInit {
   @Input()
   public selectVote: IVoteItem | null = {} as IVoteItem;
 
-  @Output()
-  public selectOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
-
-  @Output()
-  public updateStep: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output()
-  public updateAttemptCount: EventEmitter<number> = new EventEmitter<number>();
+  constructor(private _store: Store<IDashboard>) {
+  }
 
   public ngOnInit(): void {
     setTimeout(() => {
-      this.selectOutput.emit(null);
-      this.updateStep.emit(1);
-      this.updateAttemptCount.emit(0);
-
-      if (this.selectVote) {
-        this.selectVote.active = false;
-      }
+      this._store.dispatch(refreshState({
+        selectVote: {} as IVoteItem,
+        currentStep: 1,
+        attemptCount: 0
+      }));
     }, 5000);
   }
 }

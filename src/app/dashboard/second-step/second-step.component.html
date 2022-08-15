@@ -3,10 +3,8 @@
     <h1>Please choose <span class="color-red">best company</span> <br>(vote for one)</h1>
     <app-button
       class="d-flex justify-center pt-1"
-      [voteItems]="voteItems"
-      [attemptCount]="attemptCount"
-      (selectVoteOutput)="handleSelectEvent($event)"
-      (updateAttemptCount)="attemptCountEvent($event)"
+      [voteItems]="dashboard.voteItems"
+      [attemptCount]="dashboard.attemptCount"
     >
     </app-button>
   </div>

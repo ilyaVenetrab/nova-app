@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { IVoteItem } from '../../app.service';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IDashboard, IInitialState } from '../reducers/dashboard.reducer';
+import { updateAttemptCount, updateCurrentStep } from '../actions/dashboard.actions';
 
 @Component({
   selector: 'app-first-step',
@@ -9,51 +11,30 @@ import { IVoteItem } from '../../app.service';
 })
 export class FirstStepComponent {
   @Input()
-  public voteItems: IVoteItem[] | null = null;
+  public dashboard: IInitialState = {} as IInitialState;
 
-  @Input()
-  public stepCount: number = 2;
-
-  @Input()
-  public currentStep: number = 1;
-
-  @Input()
-  public attemptCount: number = 0;
-
-  @Output()
-  public selectOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
-
-  @Output()
-  public updateStep: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output()
-  public updateAttemptCount: EventEmitter<number> = new EventEmitter<number>();
-
-  public selectVote: IVoteItem | null = null;
-
-  public handleSelectEvent(item: IVoteItem | null): void {
-    this.selectVote = item;
-    this.selectOutput.emit(this.selectVote);
+  public constructor(public store: Store<IDashboard>) {
   }
 
   public nextStep(): void {
-    this.currentStep++;
-    this.updateStep.emit(this.currentStep);
-
-    if (this.attemptCount >= 2) {
-      this.attemptCount = 0;
-    } else {
-      this.attemptCount++;
+    if (this.dashboard.currentStep) {
+      let currentStep = this.dashboard.currentStep + 1;
+      this.store.dispatch(updateCurrentStep({ currentStep }))
     }
-    this.updateAttemptCount.emit(this.attemptCount);
+
+    let count = this.dashboard.attemptCount;
+    if (this.dashboard.attemptCount >= 2) {
+      count = 0;
+    } else {
+      count++;
+    }
+    this.store.dispatch(updateAttemptCount({ attemptCount: count }));
   }
 
   public previousStep(): void {
-    this.currentStep--;
-    this.updateStep.emit(this.currentStep);
-  }
-
-  public attemptCountEvent(index: number = 0) {
-    this.updateAttemptCount.emit(index);
+    if (this.dashboard.currentStep) {
+      let currentStep = this.dashboard.currentStep - 1;
+      this.store.dispatch(updateCurrentStep({ currentStep }))
+    }
   }
 }

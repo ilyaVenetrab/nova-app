@@ -2,7 +2,6 @@
   <app-first-attempt
     [voteItems]="voteItems"
     [attemptCount]="attemptCount"
-    (selectVoteOutput)="selectEvent($event)"
   ></app-first-attempt>
 </ng-container>
 
@@ -10,8 +9,6 @@
   <app-second-attempt
     [voteItems]="voteItems"
     [attemptCount]="attemptCount"
-    (selectVoteOutput)="selectEvent($event)"
-    (updateAttemptCount)="attemptCountEvent($event)"
   ></app-second-attempt>
 </ng-container>
 
@@ -19,6 +16,5 @@
   <app-third-attempt
     [voteItems]="voteItems"
     [attemptCount]="attemptCount"
-    (selectVoteOutput)="selectEvent($event)"
   ></app-third-attempt>
 </ng-container>

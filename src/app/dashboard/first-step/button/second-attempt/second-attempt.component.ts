@@ -1,5 +1,8 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { FirstAttemptComponent } from '../first-attempt/first-attempt.component';
+import { Store } from '@ngrx/store';
+import { IInitialState } from '../../../reducers/dashboard.reducer';
+import { updateAttemptCount } from '../../../actions/dashboard.actions';
 
 @Component({
   selector: 'app-second-attempt',
@@ -7,17 +10,14 @@ import { FirstAttemptComponent } from '../first-attempt/first-attempt.component'
   styleUrls: ['./second-attempt.component.scss']
 })
 export class SecondAttemptComponent extends FirstAttemptComponent implements AfterViewInit {
-  @Output()
-  public updateAttemptCount: EventEmitter<number> = new EventEmitter<number>();
-
   public scaleCounter: number = 0;
 
   public mouseleaveCount: number = 0;
 
   public buttonPosition!: { top: number, left: number };
 
-  public constructor(private _myElem: ElementRef) {
-    super();
+  public constructor(private _myElem: ElementRef, public override store: Store<IInitialState>) {
+    super(store);
   }
 
   public ngAfterViewInit(): void {
@@ -40,7 +40,7 @@ export class SecondAttemptComponent extends FirstAttemptComponent implements Aft
     this.mouseleaveCount++;
 
     if (this.mouseleaveCount === 2) {
-      this.updateAttemptCount.emit(2);
+      this.store.dispatch(updateAttemptCount({ attemptCount: 2 }));
     }
   }
 

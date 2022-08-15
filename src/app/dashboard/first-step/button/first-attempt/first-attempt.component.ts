@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IVoteItem } from 'src/app/app.service';
+import { setSelectVote } from '../../../actions/dashboard.actions';
+import { Store } from '@ngrx/store';
+import { IInitialState } from '../../../reducers/dashboard.reducer';
 
 @Component({
   selector: 'app-first-attempt',
@@ -8,24 +11,18 @@ import { IVoteItem } from 'src/app/app.service';
 })
 export class FirstAttemptComponent {
   @Input()
-  public voteItems: IVoteItem[] | null = [] as IVoteItem[];
+  public voteItems: IVoteItem[] = [] as IVoteItem[];
 
   @Input()
   public attemptCount: number = 0;
 
   @Output()
-  public selectVoteOutput: EventEmitter<IVoteItem | null> = new EventEmitter<IVoteItem | null>();
+  public selectVoteOutput: EventEmitter<IVoteItem> = new EventEmitter<IVoteItem>();
 
-  public clickEvent(item: IVoteItem | null, event?: MouseEvent): void {
-    this.selectVoteOutput.emit(item);
+  public constructor(public store: Store<IInitialState>) {}
 
-    this.voteItems?.forEach(i => {
-      if (i !== item) {
-        i.active = false;
-      } else {
-        item.active = true;
-      }
-    });
+  public clickEvent(item: IVoteItem, event?: MouseEvent): void {
+    this.store.dispatch(setSelectVote({ selectVote: item }));
   }
 
 }

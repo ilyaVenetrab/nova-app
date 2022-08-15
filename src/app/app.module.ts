@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
+// import { AppService } from './app.service';
 import { BD_URL } from './shared/tokens';
 import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -19,10 +19,10 @@ import { AuthInterceptor } from './shared/auth/auth.interceptor';
     DashboardModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
-    AppService,
+    // AppService,
     {
       provide: BD_URL,
       useValue: environment.bdUrl,

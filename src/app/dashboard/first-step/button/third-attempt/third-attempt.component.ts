@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { FirstAttemptComponent } from '../first-attempt/first-attempt.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IVoteItem } from '../../../../app.service';
+import { Store } from '@ngrx/store';
+import { IInitialState } from '../../../reducers/dashboard.reducer';
 
 @Component({
   selector: 'app-third-attempt',
@@ -17,8 +19,11 @@ export class ThirdAttemptComponent extends FirstAttemptComponent implements Afte
 
   public btnStyle: string = '';
 
-  constructor(private _sanitizer: DomSanitizer, public _elementRef: ElementRef) {
-    super();
+  constructor(
+    private _sanitizer: DomSanitizer,
+    private _elementRef: ElementRef,
+    public override store: Store<IInitialState>) {
+    super(store);
   }
 
   public override clickEvent(item: IVoteItem, event: MouseEvent): void {

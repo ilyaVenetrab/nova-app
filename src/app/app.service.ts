@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
 export interface ICommon {
@@ -26,6 +26,8 @@ export interface IQuestion {
 export class AppService {
   public constructor(private _http: HttpClient) {}
 
+  public companies: IVoteItem[] = [];
+
   // Error handling
   private _errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
@@ -44,7 +46,8 @@ export class AppService {
   public getCompanies(): Observable<IVoteItem[]> {
     return this._http.get('/companies').pipe(
       map((res: Object) => {
-        return res as IVoteItem[];
+        this.companies = res as IVoteItem[];
+        return this.companies;
       }),
       catchError(this._errorMgmt)
     );
