@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "variables";
 
 body {
@@ -78,3 +82,8 @@ h1 {
 .text-center {
   text-align: center;
 }
+
+@import "fonts";
+@import "button";
+@import "form";
+

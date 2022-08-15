@@ -1,0 +1,27 @@
+<ng-container>
+  <div class="text-center">
+    <h1>Please choose <span class="color-red">best company</span> <br>(vote for one)</h1>
+    <app-button
+      class="d-flex justify-center pt-1"
+      [voteItems]="dashboard.voteItems"
+      [attemptCount]="dashboard.attemptCount"
+    >
+    </app-button>
+  </div>
+
+  <div class="d-flex justify-between items-center pt-1">
+    <button class="btn-2"
+            [disabled]="!dashboard.selectVote.active || dashboard.currentStep < dashboard.stepCount"
+            (click)="previousStep()"
+    >
+      Previous
+    </button>
+    <ng-content></ng-content>
+    <button class="btn-2"
+            [disabled]="!dashboard.selectVote.active || dashboard.currentStep == dashboard.stepCount"
+            (click)="nextStep()"
+    >
+      Next
+    </button>
+  </div>
+</ng-container>

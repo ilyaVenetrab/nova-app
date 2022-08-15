@@ -1,0 +1,20 @@
+<ng-container *ngIf="attemptCount === 0 || isMobile">
+  <app-first-attempt
+    [voteItems]="voteItems"
+    [attemptCount]="attemptCount"
+  ></app-first-attempt>
+</ng-container>
+
+<ng-container *ngIf="attemptCount === 1 && !isMobile">
+  <app-second-attempt
+    [voteItems]="voteItems"
+    [attemptCount]="attemptCount"
+  ></app-second-attempt>
+</ng-container>
+
+<ng-container *ngIf="attemptCount === 2 && !isMobile">
+  <app-third-attempt
+    [voteItems]="voteItems"
+    [attemptCount]="attemptCount"
+  ></app-third-attempt>
+</ng-container>

@@ -1,0 +1,24 @@
+<app-header></app-header>
+<main *ngIf="(dashboard$ | async) as dashboard">
+  <div class="border-grey border-radius p-2">
+    <app-first-step
+      *ngIf="dashboard.currentStep < dashboard.stepCount"
+      [dashboard]="dashboard"
+    >
+      <span class="color-red">{{ dashboard.currentStep }} of {{ dashboard.stepCount }}</span>
+    </app-first-step>
+
+    <app-second-step
+      *ngIf="dashboard.currentStep == dashboard.stepCount && !dashboard.selectVote.isMain"
+      [dashboard]="dashboard"
+    >
+      <span class="color-red">{{ dashboard.currentStep }} of {{ dashboard.stepCount }}</span>
+    </app-second-step>
+
+
+    <app-finish-step
+      *ngIf="dashboard.currentStep == dashboard.stepCount && dashboard.selectVote?.isMain"
+      [selectVote]="dashboard.selectVote"
+    ></app-finish-step>
+  </div>
+</main>

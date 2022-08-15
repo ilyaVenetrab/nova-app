@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  bdUrl: 'https://novardis-app.herokuapp.com/api',
 };
